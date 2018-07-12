@@ -1,0 +1,11 @@
+
+body{
+ background-image: url("../images/lashes.png");
+}
+
+button,
+div,
+form,
+input {
+  margin: 10px;
+}
