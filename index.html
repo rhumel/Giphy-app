@@ -18,21 +18,29 @@
 
 
 <body>
-
+    <nav class="navbar navbar-light bg-secondary">
+        <span class="navbar-brand mb-0 h1">Gif Search</span>
+    </nav>
     <div class="container">
-        <h1>GIPHY Search</h1>
+        
 
-         <!-- Rendered Buttons will go here  -->
-        <div id="buttons-view"></div>
+       
 
-        <form id="gif-form">
-            <label for="gif-input">Enter New Giphy</label>
-            <input type="text" id="gif-input">
-            <br>
-
-            <!-- Button triggers new GIF to be added -->
-            <input id="add-gif" type="submit" value="Submit">
+        <form> 
+            <div class="form-row">
+              <div class="col-md-3">
+                <label for="gif-input" class="bold">Enter Gif:</label>
+                <input type="text" class="form-control" id="gif-input">
+                 <!--Button triggers new GIF to be added--> 
+                <input id="add-gif" type="submit" class="btn btn-secondary"  value="Submit">
+              </div>
+            </div>  
+            
         </form>
+
+          <!-- Rendered Buttons will go here  -->
+          <div id="buttons-view"></div>
+          
 
          <!-- Gif images will get dumped here -->
          <div id="gif-view"></div>
