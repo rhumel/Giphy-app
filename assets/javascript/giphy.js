@@ -3,14 +3,12 @@ $(document).ready(function () {
 // Initial array of Gifs
  var gifArray = ["Dog", "Cat", "Hello", "Happy Birtday"];
  var addedGif;  
- var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=HkjK4ZbPCa08m82JFOGCEzAuICSYLnwQ&q="
- +addedGif + "&limit=1&offset=0&rating=G&lang=en";
-  
 
- 
  
 
   
+
+
   // handles events where a GIF Search button is clicked
     $("#add-gif").on("click", function(event) {
       event.preventDefault();
@@ -22,30 +20,29 @@ $(document).ready(function () {
       // Adding new GIF to  gifArray
       gifArray.push(addedGif);
 
-      //call to GIPHY for GIF
-      ajaxCall();
-      console.log(queryURL);
-    
+      $('#gif-input').val('');
+         
       // This will create, and append the buttons to div
       renderButtons();
     });
 
  // handles events where any of the buttons in the buttons-view div are pressed
   
-      $("#buttons-view").on("click", function(event) {
+      $(document).on("click",".gif-btn", function(event) {
       event.preventDefault();
       addedGif = $(this).attr("data-name");
         console.log(addedGif + " on button click");
 
+
       //call to GIPHY for GIF  
-      ajaxCall();
+      ajaxCall(addedGif);
 
      });
 
 
 
-function ajaxCall() {
-
+function ajaxCall(query) {
+  var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=HkjK4ZbPCa08m82JFOGCEzAuICSYLnwQ&limit=1&offset=0&rating=G&lang=en&q=" + query;
       $.ajax({
         url: queryURL,
         method: "GET"
@@ -54,8 +51,8 @@ function ajaxCall() {
         console.log(response);
         
         // Saving the  url
-          var imageUrl = response.data[0].images.downsized_small.mp4;
-        
+          var imageUrl = response.data[0].images.fixed_height.url;
+        console.log(imageUrl + "just saved link from object");
           // Creating and storing an image tag
           var gifImage = $("<img>");
 
@@ -83,7 +80,7 @@ function ajaxCall() {
 
         //delete array of buttons each time
         $("#buttons-view").empty();
-       // $("<input>").empty();
+        $("#gif-input").val(" ");
 
         // Looping through the array of Gifs
         for (var i = 0; i < gifArray.length; i++) {
@@ -99,6 +96,8 @@ function ajaxCall() {
           a.text(gifArray[i]);
           // Adding the button to the buttons-view div
           $("#buttons-view").append(a);
+
+         
         }
       }
     
