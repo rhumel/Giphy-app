@@ -1,11 +1,22 @@
 
 body{
  background-image: url("../images/lashes.png");
+ font-family: 'PT Serif', serif;
+}
+
+#header{
+  font-size: 50px;
+}
+
+label {
+  font-size: 24px;
 }
 
 button,
-div,
-form,
-input {
+/* div,
+form, 
+input*/
+button {
   margin: 10px;
 }
+
