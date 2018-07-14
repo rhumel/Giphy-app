@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 // Initial array of Gifs
- var gifArray = ["Dog", "Cat", "Hello", "Happy Birtday"];
+ var gifArray = ["Dog", "Cat", "Hello", "Happy Birthday","Taco"];
  var addedGif;  
 
 
@@ -51,19 +51,22 @@ $(document).on("click", ".gif", function() {
 });
 
 function ajaxCall(query) {
-  var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=HkjK4ZbPCa08m82JFOGCEzAuICSYLnwQ&limit=1&offset=0&rating=G&lang=en&q=" + query;
+  var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=HkjK4ZbPCa08m82JFOGCEzAuICSYLnwQ&limit=10&offset=0&rating=G&lang=en&q=" + query;
       $.ajax({
         url: queryURL,
         method: "GET"
       }).then(function(response) {
 
         console.log(response);
-        
+        console.log(response.data.length);
+       for (var i=0;i < response.data.length; i++){ 
         // Saving the  url
-          var imageUrl = response.data[0].images.fixed_height.url;
-         //added for start and stop
-          var animateUrl = response.data[0].images.fixed_height.url;
-          var stillUrl = response.data[0].images.fixed_height_still.url;
+        console.log ("i just set the for loop")
+        var imageUrl = response.data[i].images.fixed_height_still.url;
+        var animateUrl = response.data[i].images.fixed_height.url;
+        var stillUrl = response.data[i].images.fixed_height_still.url;                    
+        // var rating = response.date[i].rating;
+        // var pOne = $("<p>").text("Rating: " + rating);
          
           console.log(imageUrl + "just saved link from object");
           // Creating and storing an image tag
@@ -76,16 +79,22 @@ function ajaxCall(query) {
          //adding for the start and stop
           gifImage.attr("data-still",stillUrl);
           gifImage.attr("data-animate",animateUrl);
-          gifImage.attr("data-state", "animate");
-          gifImage.addClass("gif");
+          gifImage.attr("data-state", "still");
+          gifImage.addClass("gif img-thumbnail");
 
 
-          // Prepending the catImage to the images div
+          // Prepending the GifImage to the images div
           console.log(gifImage);
           $("#gif-view").prepend(gifImage);
-       });
-    
+  
+         
+        //  $("#gif-view").append(gifImage);
+       };
+        });
+      
       }
+    
+    
   
 
 //function appendImages() {
