@@ -24,3 +24,8 @@ button {
 
   margin:20px;
 }
+
+p {
+  width:30%;
+  margin:unset;
+}

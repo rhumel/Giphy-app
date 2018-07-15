@@ -65,12 +65,14 @@ function ajaxCall(query) {
         var imageUrl = response.data[i].images.fixed_height_still.url;
         var animateUrl = response.data[i].images.fixed_height.url;
         var stillUrl = response.data[i].images.fixed_height_still.url;                    
-        // var rating = response.date[i].rating;
-        // var pOne = $("<p>").text("Rating: " + rating);
-         
+        var rating = response.data[i].rating;
+        var pOne = $("<scan>").text("Rated: " + rating);
+        pOne.addClass("card-text");
+ 
+         console.log(response.data[i].rating)         
           console.log(imageUrl + "just saved link from object");
           // Creating and storing an image tag
-          var gifImage = $("<img>");
+          gifImage = $("<img>");
 
           // Setting the gif  src attribute to imageUrl
           gifImage.attr("src", imageUrl);
@@ -80,29 +82,20 @@ function ajaxCall(query) {
           gifImage.attr("data-still",stillUrl);
           gifImage.attr("data-animate",animateUrl);
           gifImage.attr("data-state", "still");
-          gifImage.addClass("gif img-thumbnail");
-
-
-          // Prepending the GifImage to the images div
-          console.log(gifImage);
-          $("#gif-view").prepend(gifImage);
+         gifImage.addClass("gif img-thumbnail");
+         ;
+                
+       //move image and rateing to doc
+        
+        $("#gif-view").prepend(pOne).prepend(gifImage);
   
-         
-        //  $("#gif-view").append(gifImage);
+      
        };
         });
       
       }
     
-    
-  
 
-//function appendImages() {
-
-
-    
-
- 
       // Function for displaying initial Array of buttons
       function renderButtons() {
 
